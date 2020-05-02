@@ -1,2 +1,8 @@
+<% provide(:pg_title, "Results") %>
 <h1>Searches#show</h1>
-<p>Find me in app/views/searches/show.html.erb</p>
+
+<% if @flickr_user.photos.empty? %>
+    <p>This user hasnt posted any photos. Maybe theyre private.</p>
+<% else %>
+    <%= render "all_photos" %>
+<% end %>

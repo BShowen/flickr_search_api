@@ -1,0 +1,3 @@
+<% @flickr_user.photos.each do |photo| %>
+    <%= image_tag "#{@flickr_user.photo_url(photo)}"%>
+<% end %>
