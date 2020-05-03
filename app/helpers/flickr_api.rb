@@ -1,5 +1,5 @@
-require "JSON"
-require "net/http"
+# require "JSON"
+# require "net/http"
 
 class UserError < StandardError; end
 class InitializeError < StandardError; end
