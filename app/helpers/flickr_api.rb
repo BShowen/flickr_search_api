@@ -8,7 +8,6 @@ class FlickrApi
   attr_reader :user_id, :username, :photos
   
   def initialize(options = {})
-    # @api_key = "244695e3da0f86b30e633ad3817e2c23"
     @api_key = ENV["FLICKR_API_KEY"]
     raise InitializeError,  "username is required" if options[:username].nil?
     @username = options[:username] 
