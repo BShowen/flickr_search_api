@@ -4,3 +4,13 @@
     <%= text_field_tag "search[username]" %>
     <%= f.submit "Search" %>
 <% end %>
+
+<% if @flickr_user %>
+    <h1><%= @flickr_user.username %></h1>
+
+    <% if @flickr_user.photos.nil? %>
+        <p>This user hasnt posted any photos. Maybe theyre private.</p>
+    <% else %>
+        <%= render "all_photos" %>
+    <% end %>
+<% end %>

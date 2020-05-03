@@ -1,8 +1,0 @@
-<% provide(:pg_title, "Results") %>
-<h1><%= @flickr_user.username %></h1>
-
-<% if @flickr_user.photos.empty? %>
-    <p>This user hasnt posted any photos. Maybe theyre private.</p>
-<% else %>
-    <%= render "all_photos" %>
-<% end %>
