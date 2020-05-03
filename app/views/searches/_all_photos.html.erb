@@ -1,3 +1,7 @@
 <% @flickr_user.photos.each do |photo| %>
-    <%= image_tag "#{@flickr_user.photo_url(photo)}"%>
+    <div class="py-2 px-2">
+        <%= image_tag "#{@flickr_user.photo_url(photo)}", class: "img-fluid rounded"%>
+    </div>
 <% end %>
+
+<!-- flex-fill -->

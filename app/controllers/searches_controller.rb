@@ -4,9 +4,18 @@ class SearchesController < ApplicationController
 
   def create
     @flickr_user = FlickrApi.new(username: params[:search][:username])
-    if !@flickr_user.valid?
-      flash.now[:alert] = @flickr_user.errors.first 
-    end
+    apply_flash
     render :new
+  end
+
+  private 
+  def apply_flash
+    if !@flickr_user.valid?
+      flash.now[:danger] = "#{@flickr_user.errors.first}"
+    elsif @flickr_user.valid? && @flickr_user.photos.empty?
+      flash.now[:warning] = "Found #{@flickr_user.username.capitalize} but they don't seem to have any photos."
+    else
+      flash.now[:success] = "Showing photos for #{@flickr_user.username.capitalize}"
+    end
   end
 end

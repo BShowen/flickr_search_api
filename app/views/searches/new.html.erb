@@ -1,16 +1,22 @@
 <% provide(:pg_title, "Search") %>
-<%= form_with url: searches_path, local: true do |f| %>
-    <%= label_tag "search[username]", "Enter a Flickr user name"%>
-    <%= text_field_tag "search[username]" %>
-    <%= f.submit "Search" %>
-<% end %>
+<div class="row justify-content-center">
+    <div class="my-3">
+        <%= form_with url: root_path, local: true, class: "form-signin" do |f| %>
+            <%= label_tag "search[username]", "Search Flickr", class: "h2 mb-3 font-weight-normal my-3"%>
+            <%= text_field_tag "search[username]", "", class: "form-control my-1" %>
+            <%= f.submit "Search", class: "btn btn-primary btn-block my-1" %>
+        <% end %>
+    </div>
+</div>
 
-<% if @flickr_user && @flickr_user.valid? %>
-    <h1><%= @flickr_user.username %></h1>
-
-    <% if @flickr_user.photos.nil? %>
-        <p>This user hasnt posted any photos. Maybe theyre private.</p>
-    <% else %>
-        <%= render "all_photos" %>
+<div  class="d-flex flex-row mb-3 flex-wrap justify-content-around align-items-center">
+    <% if @flickr_user && @flickr_user.valid? %>
+        <% if @flickr_user.photos.nil? %>
+            <p>This user hasnt posted any photos. Maybe theyre private.</p>
+        <% else %>
+            <%= render "all_photos" %>
+        <% end %>
     <% end %>
-<% end %>
+</div>
+
+<!-- justify-content-around -->

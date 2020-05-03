@@ -10,8 +10,13 @@ class FlickrApi
   def initialize(options = {})
     @api_key = ENV["FLICKR_API_KEY"]
     raise InitializeError,  "username is required" if options[:username].nil?
-    @username = options[:username] 
-    @user_id = get_user_id 
+    begin
+      @username = options[:username] 
+      raise UserError, "Name cant be blank" if @username.blank?
+    rescue UserError => e
+      errors << e.message
+    end
+    @user_id = get_user_id if !@username.blank?
     @photos = get_photos if @user_id
   end
 
@@ -39,7 +44,7 @@ class FlickrApi
       id_url ||= URI("https://www.flickr.com/services/rest/?method=flickr.people.findByUsername&api_key=#{@api_key}&username=#{@username}&format=json&nojsoncallback=1")
       id_response ||= Net::HTTP.get(id_url)
       @parsed_id_response ||= JSON.parse(id_response) 
-      raise UserError, "Cant find that user" if @parsed_id_response["stat"] != "ok"
+      raise UserError, "Cant find user #{@username.capitalize}" if @parsed_id_response["stat"] != "ok"
     rescue UserError => e
       errors << e.message
       return
