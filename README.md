@@ -1,5 +1,5 @@
-# Flickr Viewer
-[Live](https://flick-r.herokuapp.com/)
+# Flickr Viewer - [Go to app](https://flick-r.herokuapp.com/)
+![app screenshot](https://github.com/BShowen/flickr_search_api/blob/master/app/assets/images/example.png "some text")
 
 
 This is a simple application that allows you to type in the username for a Flickr user and see all of the photos they have uploaded. There are a few Flickr API gems out there such as [flickr.rb](https://github.com/RaVbaker/flickr/) and [flickraw](https://github.com/hanklords/flickraw), however this project was simple enough that I decided to create my own Flickr API. 
@@ -11,5 +11,3 @@ To see how my API in doing this just view the source code for it in app/helpers/
 
 
 
-
-![app screenshot](https://github.com/BShowen/flickr_search_api/blob/master/app/assets/images/example.png "some text")
