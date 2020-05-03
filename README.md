@@ -11,4 +11,4 @@ To see how my API in doing this just view the source code for it in app/helpers/
 
 
 
-![app screenshot](https://www.flickr.com/photos/188236499@N08/49850615696/in/dateposted-public/lightbox/)
+![app screenshot](https://github.com/BShowen/flickr_search_api/blob/master/app/assets/images/example.png "some text")
