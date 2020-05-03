@@ -5,7 +5,7 @@
     <%= f.submit "Search" %>
 <% end %>
 
-<% if @flickr_user %>
+<% if @flickr_user.valid? %>
     <h1><%= @flickr_user.username %></h1>
 
     <% if @flickr_user.photos.nil? %>
