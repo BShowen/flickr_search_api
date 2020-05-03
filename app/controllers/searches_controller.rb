@@ -8,9 +8,11 @@ class SearchesController < ApplicationController
   def create
     @flickr_user = FlickrApi.new(username: params[:search][:username])
     if !@flickr_user.valid?
-      flash[:alert] = @flickr_user.errors.first 
+      flash.now[:alert] = @flickr_user.errors.first 
+      render :new
+    else
+      render :show
     end
-    render "searches/show.html.erb"
   end
 
 end
