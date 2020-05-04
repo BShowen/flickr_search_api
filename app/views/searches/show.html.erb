@@ -1,0 +1,8 @@
+<%= image_tag(@img_source_url, class: "m-3 img-fluid rounded") %>
+
+
+<h3>Available sizes</h3>
+
+<% @sizes.each do |p| %>
+    <p><%= link_to p["label"], p["source"], target: :_blank%></p>
+<% end %>

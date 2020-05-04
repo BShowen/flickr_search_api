@@ -35,11 +35,8 @@ class FlickrApi
   # fetches the available sizes of a particular photo. This method returns an array of hashes. 
   def self.photo_sizes(options = {})
     photo_id = options[:photo_id]
-    puts "PHOTO_ID: #{options[:photo_id]}"
-    url = URI("https://www.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=#{ENV["FLICKR_API_KEY"]}&photo_id=#{photo_id}&format=json&nojsoncallback=1")
-    puts "URL: #{url}"
+    url = URI("https://www.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=#{ENV['FLICKR_API_KEY']}&photo_id=#{photo_id}&format=json&nojsoncallback=1")
     photos_response ||= Net::HTTP.get(url)
-    puts "PHOTOS_RESPONSE: #{photos_response}"
     JSON.parse(photos_response)["sizes"]["size"]
   end
 

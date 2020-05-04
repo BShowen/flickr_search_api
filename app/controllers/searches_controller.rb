@@ -8,6 +8,13 @@ class SearchesController < ApplicationController
     render :new
   end
 
+  def show
+    @img_source_url = FlickrApi.photo_url(params[:photo][:photo_data])
+    
+    #array of hashes of sizes for the given photo.
+    @sizes = FlickrApi.photo_sizes(photo_id: params[:photo][:id])
+  end
+
   private 
   def apply_flash
     if !@flickr_user.valid?
