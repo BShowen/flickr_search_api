@@ -5,11 +5,10 @@ class UserError < StandardError; end
 class InitializeError < StandardError; end
 
 class FlickrApi
-  attr_reader :user_id, :username, :photos
+  attr_reader :user_id, :username, :photos, :sizes
   
   def initialize(options = {})
     @api_key = ENV["FLICKR_API_KEY"]
-    raise InitializeError,  "username is required" if options[:username].nil?
     begin
       @username = options[:username] 
       raise UserError, "Name cant be blank" if @username.blank?
@@ -24,12 +23,24 @@ class FlickrApi
     @errors.nil?
   end
 
-  def photo_url(options = {})
+  # generates a source url for a given photo. This method returns a URL. 
+  def self.photo_url(options = {})
     farm_id = options["farm"]
     server_id = options["server"]
     id = options["id"]
     secret = options["secret"]
     full_photo_url = "https://farm#{farm_id}.staticflickr.com/#{server_id}/#{id}_#{secret}.jpg"
+  end
+
+  # fetches the available sizes of a particular photo. This method returns an array of hashes. 
+  def self.photo_sizes(options = {})
+    photo_id = options[:photo_id]
+    puts "PHOTO_ID: #{options[:photo_id]}"
+    url = URI("https://www.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=#{ENV["FLICKR_API_KEY"]}&photo_id=#{photo_id}&format=json&nojsoncallback=1")
+    puts "URL: #{url}"
+    photos_response ||= Net::HTTP.get(url)
+    puts "PHOTOS_RESPONSE: #{photos_response}"
+    JSON.parse(photos_response)["sizes"]["size"]
   end
 
   # errors will be accumulated into this array. The object will be invalid unless errors is empty. 
