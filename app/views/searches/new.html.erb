@@ -6,7 +6,6 @@
 <div class="row justify-content-center">
     <div class="my-3">
         <%= form_with url: root_path, local: true, class: "form-signin" do |f| %>
-            <!-- <%= label_tag "search[username]", "Search Flickr", class: "h2 mb-3 font-weight-normal my-3"%> -->
             <%= text_field_tag "search[username]", "", placeholder:"Username", class: "form-control my-1" %>
             <%= f.submit "Search", class: "btn btn-primary btn-block my-1" %>
         <% end %>
@@ -24,6 +23,3 @@
         <% end %>
     <% end %>
 </div>
-
-
-<!-- justify-content-around -->
